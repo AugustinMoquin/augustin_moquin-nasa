@@ -36,6 +36,7 @@ namespace nasa_app
         {
             InitializeComponent();
 
+            //crée une objet apod et stock le resultat
             Apod Newapod = new Apod();
             Apod apod = Newapod.GetApod();
 
@@ -59,6 +60,7 @@ namespace nasa_app
             ApodTitle.SetBinding(TextBlock.TextProperty, BindingTitle);
         }
 
+        //une fonction pour agrandir et retécir le menu, peut etre amélioré
         private void menu_click(object sender, RoutedEventArgs e)
         {
             if (stateClose)

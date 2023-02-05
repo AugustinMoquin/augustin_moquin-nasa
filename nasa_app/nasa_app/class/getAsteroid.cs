@@ -23,6 +23,7 @@ namespace nasa_app
         {
             string Url = "https://api.nasa.gov/neo/rest/v1/feed?start_date=" + start + "&end_date=" + start + "&api_key=Xz8qeWcjDFBG5aMguAUoKBxEpUB1FkMnCMkxqkz0";
             Root root= new Root();
+            //try une requette pour l'api
             try
             {
                 WebRequest resquest = HttpWebRequest.Create(Url);
@@ -30,6 +31,7 @@ namespace nasa_app
                 StreamReader reader = new StreamReader(response.GetResponseStream());
                 string root_json = reader.ReadToEnd();
 
+                //converti en json et le deserialize dans l'objet Root
                 root = Newtonsoft.Json.JsonConvert.DeserializeObject<Root>(root_json);
                 return root;
             }
@@ -43,6 +45,7 @@ namespace nasa_app
 
         public static async Task<OrbitalData> Get_indAsteroid(string Url)
         {
+            //pour le moment ne sert pas mais peut etre dans le futur
             OrbitalData OrbitalData = new OrbitalData();
             try
             {

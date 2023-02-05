@@ -236,7 +236,7 @@
                         x:Name="next"
                         Click="Click_toNext"/>
             </StackPanel>
-            <TextBlock Text="fonctionne mais ne s'affiche pas sur la page" VerticalAlignment="center"
+            <TextBlock Text="ne pas appuyer sur le bouton next si date d'ajd" VerticalAlignment="center"
                            HorizontalAlignment="Center" Foreground="White"
                        TextWrapping="wrap" Width="150"/>
                 <!-- renvoie chaque asteroide la periode selectionnée -->

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace nasa_app
 {
-
+    //récupère toutes les infos de l'apod et les stocks dans un objet
     internal class Apod
     {
         public string url = "https://api.nasa.gov/planetary/apod?api_key=Xz8qeWcjDFBG5aMguAUoKBxEpUB1FkMnCMkxqkz0";

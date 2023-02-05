@@ -31,6 +31,7 @@ namespace nasa_app
         string prevDate;
         string currentDate;
 
+        //class d'asteroide pour les infos individuel
         public class Ind_asteroid
         {
             public string name { get; set; }
@@ -61,6 +62,7 @@ namespace nasa_app
             month = inputMonth.Text;
             day = inputDay.Text;
 
+            //recupère la date choisi par l'utilisateur
             string request = year + "-" + month + "-" + day;
             currentDate = request;
             Root root = getAsteroid.Get(request).Result;
@@ -68,6 +70,7 @@ namespace nasa_app
             int arrLength = root.near_earth_objects[request].Length;
             get_Asteroide(root, arrLength, request);
 
+            //on essaye d'executer ce bout de code pour passer outre une erreur
             try
             {
                 Console.WriteLine(root.near_earth_objects[request][0].name);
@@ -79,6 +82,7 @@ namespace nasa_app
             }
         }
 
+        //récupère les infos d l'asteroides et les stocks dans une liste d'objet Ind_asteroid
         private void get_Asteroide(Root root, int arrLength, string request)
         {
             List<Ind_asteroid> Name_List = new List<Ind_asteroid>();
@@ -92,11 +96,9 @@ namespace nasa_app
             this.lbxAsteroid.ItemsSource = Name_List;
         }
 
+        //permet d'acceder aux infos de l'asteroide dns une pop up
         private void Click_toIndAsteroid(object sender, RoutedEventArgs e)
         {
-            /*asteroid windowTwo = new asteroid();
-            windowTwo.Show();
-            this.Close();*/
             string index = (string)button_IndAsteroid.Tag;
             Root root = getAsteroid.Get(currentDate).Result;
             MessageBox.Show("Close approach date: " + root.near_earth_objects[currentDate][int.Parse(index)].close_approach_data[0].close_approach_date_full + "\n" + "Vitesse : " + root.near_earth_objects[currentDate][int.Parse(index)].close_approach_data[0].relative_velocity.kilometers_per_hour + " km/h" + "\n" + "Miss distance : " + root.near_earth_objects[currentDate][int.Parse(index)].close_approach_data[0].miss_distance.kilometers + " km");
@@ -106,15 +108,11 @@ namespace nasa_app
         //asteroides du jour precedent
         private void Click_toPrevious(object sender, RoutedEventArgs e)
         {
-            asteroid windowTwo = new asteroid();
-            windowTwo.Show();
-            this.Close();
-
+            //recupère la date actuelle et récupère la lien vers le jour précédent
             int tampon = 0;
-
-            string request = year + "-" + month + "-" + day;
-            Root root = getAsteroid.Get(request).Result;
+            Root root = getAsteroid.Get(currentDate).Result;
             string next = root.links.next;
+            //un foreach pas tres beau mais vachement utile quand on veut récuperer la date dans une longue string
             foreach (char c in next)
             {
                 tampon++;
@@ -124,6 +122,7 @@ namespace nasa_app
                 }
             }
 
+            //envoie une requette de récupration des asteroides sur la date voulue
             Root NewRoot = getAsteroid.Get(prevDate).Result;
             int arrLength = NewRoot.near_earth_objects[prevDate].Length;
             get_Asteroide(NewRoot, arrLength, prevDate);
@@ -137,20 +136,18 @@ namespace nasa_app
             {
                 MessageBox.Show("nothing seems to have happened this month");
             }
+            //reset les dates pour rester dans la continuité
+            currentDate= prevDate;
             prevDate = "";
         }
 
         private void Click_toNext(object sender, RoutedEventArgs e)
         {
-            asteroid windowTwo = new asteroid();
-            windowTwo.Show();
-            this.Close();
-
+            //recupère la date actuelle et récupère la lien vers le jour suivant
             int tampon = 0;
-
-            string request = year + "-" + month + "-" + day;
-            Root root = getAsteroid.Get(request).Result;
+            Root root = getAsteroid.Get(currentDate).Result;
             string next = root.links.previous;
+            //un foreach pas tres beau mais vachement utile quand on veut récuperer la date dans une longue string
             foreach (char c in next)
             {
                 tampon++;
@@ -159,7 +156,7 @@ namespace nasa_app
                     nextDate += c;
                 }
             }
-
+            //envoie une requette de récupration des asteroides sur la date voulue
             Root NewRoot = getAsteroid.Get(nextDate).Result;
             int arrLength = NewRoot.near_earth_objects[nextDate].Length;
             get_Asteroide(NewRoot, arrLength, nextDate);
@@ -173,6 +170,8 @@ namespace nasa_app
             {
                 MessageBox.Show("nothing seems to have happened this month");
             }
+            //reset les variables
+            currentDate = nextDate;
             nextDate = "";
         }
 
@@ -215,6 +214,7 @@ namespace nasa_app
             this.Close();
         }
 
+        //fonction qui prend la date d'aujourd'hui et recupère les asteroides
         private void Click_todayDate(object sender, RoutedEventArgs e)
         {
             string request = DateTime.Now.ToString("yyyy-dd-MM");
