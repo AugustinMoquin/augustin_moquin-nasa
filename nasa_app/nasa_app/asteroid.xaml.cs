@@ -29,6 +29,7 @@ namespace nasa_app
         private string day;
         string nextDate;
         string prevDate;
+        string currentDate;
 
         public class Ind_asteroid
         {
@@ -61,6 +62,7 @@ namespace nasa_app
             day = inputDay.Text;
 
             string request = year + "-" + month + "-" + day;
+            currentDate = request;
             Root root = getAsteroid.Get(request).Result;
 
             int arrLength = root.near_earth_objects[request].Length;
@@ -84,7 +86,7 @@ namespace nasa_app
             {
                 Ind_asteroid name_List = new Ind_asteroid();
                 name_List.name = root.near_earth_objects[request][j].name;
-                name_List.self = root.near_earth_objects[request][j].links.self;
+                name_List.self = j.ToString();
                 Name_List.Add(name_List);
             }
             this.lbxAsteroid.ItemsSource = Name_List;
@@ -95,11 +97,10 @@ namespace nasa_app
             /*asteroid windowTwo = new asteroid();
             windowTwo.Show();
             this.Close();*/
+            string index = (string)button_IndAsteroid.Tag;
+            Root root = getAsteroid.Get(currentDate).Result;
+            MessageBox.Show("Close approach date: " + root.near_earth_objects[currentDate][int.Parse(index)].close_approach_data[0].close_approach_date_full + "\n" + "Vitesse : " + root.near_earth_objects[currentDate][int.Parse(index)].close_approach_data[0].relative_velocity.kilometers_per_hour + " km/h" + "\n" + "Miss distance : " + root.near_earth_objects[currentDate][int.Parse(index)].close_approach_data[0].miss_distance.kilometers + " km");
 
-            string url = (string)button_IndAsteroid.Tag;
-            OrbitalData orbitalData = getAsteroid.Get_indAsteroid(url).Result;
-            MessageBox.Show(orbitalData.equinox);
-            
         }
 
         //asteroides du jour precedent
@@ -220,6 +221,7 @@ namespace nasa_app
             Root root = getAsteroid.Get(request).Result;
             int arrLength = root.near_earth_objects[request].Length;
             get_Asteroide(root, arrLength, request);
+            currentDate = request;
             try
             {
                 Console.WriteLine(root.near_earth_objects[request][0].name);
