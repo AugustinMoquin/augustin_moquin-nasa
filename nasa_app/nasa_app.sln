@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nasa_app", "nasa_app\nasa_app.csproj", "{59B7F32A-FDFF-4DB2-B31B-7A114A38D332}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59B7F32A-FDFF-4DB2-B31B-7A114A38D332}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59B7F32A-FDFF-4DB2-B31B-7A114A38D332}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59B7F32A-FDFF-4DB2-B31B-7A114A38D332}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59B7F32A-FDFF-4DB2-B31B-7A114A38D332}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {46C76803-9E3F-4C2E-9EC3-22BF0E690AC0}
+	EndGlobalSection
+EndGlobal
