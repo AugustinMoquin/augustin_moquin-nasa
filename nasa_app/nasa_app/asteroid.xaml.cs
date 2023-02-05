@@ -111,9 +111,9 @@ namespace nasa_app
             //recupère la date actuelle et récupère la lien vers le jour précédent
             int tampon = 0;
             Root root = getAsteroid.Get(currentDate).Result;
-            string next = root.links.next;
+            string prev = root.links.prev;
             //un foreach pas tres beau mais vachement utile quand on veut récuperer la date dans une longue string
-            foreach (char c in next)
+            foreach (char c in prev)
             {
                 tampon++;
                 if (tampon >= 49 && tampon <= 58)
@@ -137,7 +137,6 @@ namespace nasa_app
                 MessageBox.Show("nothing seems to have happened this month");
             }
             //reset les dates pour rester dans la continuité
-            currentDate= prevDate;
             prevDate = "";
         }
 
@@ -146,7 +145,7 @@ namespace nasa_app
             //recupère la date actuelle et récupère la lien vers le jour suivant
             int tampon = 0;
             Root root = getAsteroid.Get(currentDate).Result;
-            string next = root.links.previous;
+            string next = root.links.next;
             //un foreach pas tres beau mais vachement utile quand on veut récuperer la date dans une longue string
             foreach (char c in next)
             {
@@ -171,7 +170,6 @@ namespace nasa_app
                 MessageBox.Show("nothing seems to have happened this month");
             }
             //reset les variables
-            currentDate = nextDate;
             nextDate = "";
         }
 

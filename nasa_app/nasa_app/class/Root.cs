@@ -50,7 +50,7 @@ namespace nasa_app
     public class Links
     {
         public string next { get; set; }
-        public string previous { get; set; }
+        public string prev { get; set; }
         public string self { get; set; }
         public int element { get; set; }
     }
